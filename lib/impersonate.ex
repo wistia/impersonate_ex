@@ -28,5 +28,29 @@ defmodule Impersonate do
         end
       end
     end
+
+    defmacro assert_receive_call(match) do
+      quote do
+        assert_receive {:"$gen_call", {_, _}, unquote(match)}
+      end
+    end
+
+    defmacro assert_received_call(match) do
+      quote do
+        assert_received {:"$gen_call", {_, _}, unquote(match)}
+      end
+    end
+
+    defmacro refute_receive_call(match) do
+      quote do
+        refute_receive {:"$gen_call", {_, _}, unquote(match)}
+      end
+    end
+
+    defmacro refute_received_call(match) do
+      quote do
+        refute_received {:"$gen_call", {_, _}, unquote(match)}
+      end
+    end
   end
 end
