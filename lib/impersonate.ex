@@ -16,7 +16,7 @@ defmodule Impersonate do
     end
     """
 
-    defmacro handle_call(handler) do
+    defmacro handle_call(handler, timeout \\ 100) do
       quote do
         receive do
           {:"$gen_call", {to, tag}, msg} ->
@@ -25,6 +25,8 @@ defmodule Impersonate do
               :noreply -> :ok
               reply -> send(to, {tag, reply})
             end
+        after
+          unquote(timeout) -> raise "timeout"
         end
       end
     end

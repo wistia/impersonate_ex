@@ -3,6 +3,14 @@ defmodule ImpersonateTest do
   doctest Impersonate
   require Impersonate.GenServer
 
+  describe "handle_call/2" do
+    test "can accept a timeout" do
+      assert_raise RuntimeError, fn ->
+        Impersonate.GenServer.handle_call(self(), 100)
+      end
+    end
+  end
+
   describe "assert_receive_call/1" do
     test "matches the pattern" do
       parent = self()
