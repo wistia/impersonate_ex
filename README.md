@@ -1,6 +1,10 @@
-# Impersonate
+# impersonate_ex
 
 pretend to be a gen_server, etc
+
+## Why?
+
+We often want to test message passing in our code. `impersonate_ex` implements the same interfaces as your OTP components allowing you to swap in your own mock handlers to intimately test the protocols and handling in your components.
 
 ## Installation
 
